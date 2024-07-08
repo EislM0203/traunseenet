@@ -1,0 +1,17 @@
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+resources:
+- jellyfin
+- cert-manager
+- immich
+- traefik
+- homepage
+- nextcloud
+- navidrome
+- audiobookshelf
+- radiology
+- observability
+- openwebui
+- forward-auth
+#- homepage
+#- keycloak

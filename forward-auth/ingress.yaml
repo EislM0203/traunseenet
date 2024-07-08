@@ -1,0 +1,39 @@
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: traefik-forward-auth
+  labels:
+    kubernetes.io/ingress.class: traefik
+  annotations:
+    cert-manager.io/cluster-issuer: "letsencrypt-prod"
+    traefik.ingress.kubernetes.io/router.middlewares: traefik-forward-auth@kubernetescrd
+spec:
+  ingressClassName: traefik
+  rules:
+    - host: traefik-forward-auth.traunseenet.com
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: traefik-forward-auth
+                port:
+                  number: 4181
+  tls:
+  - hosts:
+      - traefik-forward-auth.traunseenet.com
+    secretName: letsencrypt-prod
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: traefik-forward-auth
+spec:
+  selector:
+    app: traefik-forward-auth
+  ports:
+    - name: http
+      port: 4181
+      targetPort: 4181

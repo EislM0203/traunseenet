@@ -1,0 +1,14 @@
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+namespace: nextcloud
+resources:
+- deployment.apps/nextcloud.yaml
+- ingress.networking.k8s.io/nextcloud.yaml
+- persistentvolume/nextcloud-pv.yaml
+- persistentvolume/nextcloud-db-pv.yaml
+- persistentvolumeclaim/nextcloud-db-pvc.yaml
+- persistentvolumeclaim/nextcloud-server-pvc.yaml
+- secret/nextcloud-db-secret.yaml
+- service/nextcloud-db-service.yaml
+- service/nextcloud-service.yaml
+- statefulset.apps/nextcloud-db.yaml

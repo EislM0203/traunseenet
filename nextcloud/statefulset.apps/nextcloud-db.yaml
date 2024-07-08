@@ -1,0 +1,60 @@
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  annotations: {}
+  labels:
+    app: nextcloud
+  name: nextcloud-db
+  namespace: nextcloud
+spec:
+  persistentVolumeClaimRetentionPolicy:
+    whenDeleted: Retain
+    whenScaled: Retain
+  podManagementPolicy: OrderedReady
+  replicas: 1
+  revisionHistoryLimit: 10
+  selector:
+    matchLabels:
+      pod-label: nextcloud-db-pod
+  serviceName: nextcloud-db-service
+  template:
+    metadata:
+      labels:
+        pod-label: nextcloud-db-pod
+    spec:
+      containers:
+        - env:
+            - name: PGID
+              value: "100"
+            - name: PUID
+              value: "992"
+            - name: TZ
+              value: Europe/Amsterdam
+            - name: MYSQL_DATABASE
+              value: nextcloud
+          envFrom:
+            - secretRef:
+                name: nextcloud-db-secret
+          image: linuxserver/mariadb
+          imagePullPolicy: Always
+          name: mariadb
+          resources: {}
+          terminationMessagePath: /dev/termination-log
+          terminationMessagePolicy: File
+          volumeMounts:
+            - mountPath: /config
+              name: nextcloud-db-storage
+              subPath: mariadb-config
+      dnsPolicy: ClusterFirst
+      restartPolicy: Always
+      schedulerName: default-scheduler
+      securityContext: {}
+      terminationGracePeriodSeconds: 1800
+      volumes:
+        - name: nextcloud-db-storage
+          persistentVolumeClaim:
+            claimName: nextcloud-db-pvc
+  updateStrategy:
+    rollingUpdate:
+      partition: 0
+    type: RollingUpdate

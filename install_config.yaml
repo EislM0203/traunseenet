@@ -1,0 +1,4 @@
+cluster-init: true
+disable:
+  - traefik
+node-ip: 10.0.0.179 #raspberrypi

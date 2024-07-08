@@ -1,0 +1,131 @@
+#https://github.com/traefik/traefik-helm-chart/blob/master/traefik/VALUES.md
+#apiVersion: traefik.containo.us/v1alpha1
+globalArguments:
+  - '--global.sendanonymoususage=false'
+  - '--global.checknewversion=false'
+additionalArguments:
+  - '--serversTransport.insecureSkipVerify=true'
+  - '--log.level=DEBUG'
+  - "--api.insecure=true"
+deployment:
+  enabled: true
+#  kind: DeamonSet
+  replicas: 1
+  annotations: {}
+  podAnnotations: {}
+  additionalContainers: []
+  initContainers: []
+resources:
+  requests:
+    memory: '1Mi'
+    cpu: '1m'
+  limits:
+    memory: '2Gi'
+    cpu: '3000m'
+ports:
+  web:
+    redirectTo:
+      port: websecure
+  websecure:
+    #hostPort: 443
+    port: 8443
+    #containerPort: 8443
+    expose:
+      default: true
+    exposedPort: 443
+    tls:
+      enabled: true
+tracing:
+  otlp:
+    enabled: true
+    http:
+      enabled: true
+      endpoint: http://opentelemetry-collector.observability.svc.cluster.local:4318/v1/traces
+env:
+  - name: OTEL_PROPAGATORS
+    value: tracecontext,baggage,b3,jaeger
+extraObjects:
+  - apiVersion: v1
+    kind: Service
+    metadata:
+      name: traefik-api
+    spec:
+      type: ClusterIP
+      selector:
+        app.kubernetes.io/name: traefik
+        #app.kubernetes.io/instance: traefik-network
+      ports:
+        - port: 8080
+          name: traefik
+          targetPort: 9000
+          protocol: TCP
+
+  - apiVersion: v1
+    data:
+      password: b2VmaWo0dXJmZG85MiE=
+      username: bWFya3VzZWlzbA==
+    kind: Secret
+    metadata:
+      name: traefik-dashboard-auth-secret
+      namespace: traefik
+    type: kubernetes.io/basic-auth
+
+  - apiVersion: traefik.io/v1alpha1
+    kind: Middleware
+    metadata:
+      name: traefik-dashboard-auth
+    spec:
+      basicAuth:
+        secret: traefik-dashboard-auth-secret
+
+  - apiVersion: networking.k8s.io/v1
+    kind: Ingress
+    metadata:
+      name: traefik-dashboard
+      annotations:
+        traefik.ingress.kubernetes.io/router.entrypoints: websecure
+        cert-manager.io/cluster-issuer: "letsencrypt-prod"
+        traefik.ingress.kubernetes.io/router.middlewares: traefik-forward-auth@kubernetescrd
+        #traefik.ingress.kubernetes.io/router.middlewares: traefik-dashboard-auth@kubernetescrd
+    spec:
+      tls:
+        - hosts:
+          - traefik-dashboard.traunseenet.com
+          secretName: letsencrypt-prod
+      ingressClassName: traefik
+      rules:
+        - host: traefik-dashboard.traunseenet.com
+          http:
+            paths:
+              - path: /
+                pathType: Prefix
+                backend:
+                  service:
+                    name: traefik-api
+                    port:
+                      name: traefik
+
+ingressRoute:
+  dashboard:
+    enabled: false
+providers:
+  kubernetesCRD:
+    enabled: true
+    ingressClass: traefik
+    allowExternalNameServices: true
+  kubernetesIngress:
+    enabled: true
+    allowExternalNameServices: true
+    publishedService:
+      enabled: false
+rbac:
+  enabled: true
+service:
+  enabled: true
+  type: LoadBalancer
+  annotations: {}
+  labels: {}
+  spec:
+    loadBalancerIP: 10.0.0.179 #raspberrypi
+  loadBalancerSourceRanges: []
+  externalIPs: []

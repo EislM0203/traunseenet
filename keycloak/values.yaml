@@ -1,0 +1,25 @@
+production: true
+replicaCount: 1
+proxy: edge
+global:
+  defaultStorageClass: manual
+auth:
+  createAdminUser: true
+  adminUser: markuseisl
+  existingSecret: keycloak-auth
+  passwordSecretKey: KEYCLOAK_ADMIN_PASSWORD
+ingress:
+  enabled: true
+  annotations:
+    cert-manager.io/cluster-issuer: "letsencrypt-prod-backup"
+  ingressClassName: traefik
+  hostname: keycloak-prod.traunseenet.com
+  tls: true
+  extraTls:
+  - hosts:
+    - keycloak-prod.traunseenet.com
+    secretName: letsencrypt-prod-backup
+postgresql:
+  enabled: true
+  auth:
+    existingSecret: keycloak-auth

@@ -1,0 +1,25 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  annotations:
+    traefik.ingress.kubernetes.io/router.entrypoints: websecure
+    cert-manager.io/cluster-issuer: "letsencrypt-prod"
+  name: nextcloud
+  namespace: nextcloud
+spec:
+  tls:
+    - hosts:
+        - nextcloud.traunseenet.com
+      secretName: letsencrypt-prod
+  ingressClassName: traefik
+  rules:
+    - host: nextcloud.traunseenet.com
+      http:
+        paths:
+          - backend:
+              service:
+                name: nextcloud-service
+                port:
+                  number: 443
+            path: /
+            pathType: Prefix

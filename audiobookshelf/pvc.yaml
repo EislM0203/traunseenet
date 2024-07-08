@@ -1,0 +1,124 @@
+---
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: audiobookshelf-pv-config
+  namespace: audiobookshelf
+  labels:
+    type: local
+spec:
+  persistentVolumeReclaimPolicy: Retain
+  storageClassName: manual
+  capacity:
+    storage: 1Gi
+  accessModes:
+    - ReadWriteMany
+  hostPath:
+    path: "/storage/audiobookshelf/config"
+---
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: audiobookshelf-pv-metadata
+  namespace: audiobookshelf
+  labels:
+    type: local
+spec:
+  persistentVolumeReclaimPolicy: Retain
+  storageClassName: manual
+  capacity:
+    storage: 1Gi
+  accessModes:
+    - ReadWriteMany
+  hostPath:
+    path: "/storage/audiobookshelf/metadata"
+---
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: audiobookshelf-pv-podcasts
+  namespace: audiobookshelf
+  labels:
+    type: local
+spec:
+  persistentVolumeReclaimPolicy: Retain
+  storageClassName: manual
+  capacity:
+    storage: 100Gi
+  accessModes:
+    - ReadWriteMany
+  hostPath:
+    path: "/storage/audiobookshelf/podcasts"
+---
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: audiobookshelf-pv-audiobooks
+  namespace: audiobookshelf
+  labels:
+    type: local
+spec:
+  persistentVolumeReclaimPolicy: Retain
+  storageClassName: manual
+  capacity:
+    storage: 100Gi
+  accessModes:
+    - ReadWriteMany
+  hostPath:
+    path: "/storage/audiobookshelf/audiobooks"
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: audiobookshelf-pvc-config
+spec:
+  volumeMode: Filesystem
+  volumeName: audiobookshelf-pv-config
+  storageClassName: manual
+  accessModes:
+    - ReadWriteMany
+  resources:
+    requests:
+      storage: 1Gi
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: audiobookshelf-pvc-metadata
+spec:
+  volumeMode: Filesystem
+  volumeName: audiobookshelf-pv-metadata
+  storageClassName: manual
+  accessModes:
+    - ReadWriteMany
+  resources:
+    requests:
+      storage: 1Gi
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: audiobookshelf-pvc-podcasts
+spec:
+  volumeMode: Filesystem
+  volumeName: audiobookshelf-pv-podcasts
+  storageClassName: manual
+  accessModes:
+    - ReadWriteMany
+  resources:
+    requests:
+      storage: 100Gi
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: audiobookshelf-pvc-audiobooks
+spec:
+  volumeMode: Filesystem
+  volumeName: audiobookshelf-pv-audiobooks
+  storageClassName: manual
+  accessModes:
+    - ReadWriteMany
+  resources:
+    requests:
+      storage: 100Gi

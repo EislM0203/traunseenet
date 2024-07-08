@@ -1,0 +1,48 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: traefik-forward-auth
+  labels:
+    app: traefik-forward-auth
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: traefik-forward-auth
+  strategy:
+    type: Recreate
+  template:
+    metadata:
+      labels:
+        app: traefik-forward-auth
+    spec:
+      shareProcessNamespace: true
+      containers:
+        - name: traefik-forward-auth
+          image: ghcr.io/jordemort/traefik-forward-auth:latest
+          envFrom:
+          - secretRef:
+              name: keycloak-sso-data
+          resources:
+            requests:
+              memory: '1Mi'
+              cpu: '1m'
+            limits:
+              memory: '500Mi'
+              cpu: '800m'
+        #- name: go-instrumentation-sidecart
+        #  image: otel/autoinstrumentation-go
+        #  imagePullPolicy: IfNotPresent
+        #  env:
+        #    - name: OTEL_GO_AUTO_TARGET_EXE
+        #      value: /usr/bin/traefik-forward-auth
+        #    - name: OTEL_EXPORTER_OTLP_ENDPOINT
+        #      value: "https://otelcol.traunseenet.com"
+        #    - name: OTEL_SERVICE_NAME
+        #      value: "traefik-forward-auth"
+        #  securityContext:
+          #  runAsUser: 0
+         #   privileged: true
+      restartPolicy: Always
+status: {}
