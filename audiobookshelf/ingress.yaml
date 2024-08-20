@@ -5,6 +5,7 @@ metadata:
   namespace: audiobookshelf
   annotations:
     traefik.ingress.kubernetes.io/router.entrypoints: websecure
+    traefik.ingress.kubernetes.io/router.middlewares: traefik-forward-auth@kubernetescrd
     cert-manager.io/issuer: "letsencrypt-prod"
 spec:
   tls:
