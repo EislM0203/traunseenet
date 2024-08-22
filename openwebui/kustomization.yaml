@@ -3,6 +3,7 @@ kind: Kustomization
 namespace: open-webui
 resources:
 - ingress.yaml
+#- pvc.yaml #only used for initial setup, restore from longhorn if lost
 helmCharts:
   - name: open-webui
     repo: https://helm.openwebui.com/

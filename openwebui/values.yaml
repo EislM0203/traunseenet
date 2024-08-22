@@ -50,13 +50,11 @@ ingress:
   existingSecret: ""
 persistence:
   enabled: true
-  size: 2Gi
   # -- Use existingClaim if you want to re-use an existing Open WebUI PVC instead of creating a new one
-  existingClaim: ""
+  existingClaim: "open-webui-longhorn"
   # -- If using multiple replicas, you must update accessModes to ReadWriteMany
   accessModes:
-    - ReadWriteOnce
-  storageClass: ""
+    - ReadWriteMany
   selector: {}
   annotations: {}
 
