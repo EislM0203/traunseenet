@@ -24,10 +24,10 @@ spec:
       volumes:
         - name: navidrome-data
           persistentVolumeClaim:
-            claimName: navidrome-pvc-data
+            claimName: navidrome-pvc-data-longhorn
         - name: navidrome-music
           persistentVolumeClaim:
-            claimName: navidrome-pvc-music
+            claimName: navidrome-pvc-music-longhorn
       containers:
         - env:
             - name: ND_REVERSEPROXYUSERHEADER

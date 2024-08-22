@@ -1,0 +1,19 @@
+persistence:
+  defaultClass: false
+#defaultSettings:
+  ##S3
+  #backupTarget: "s3://traunseenet-backup@us-east-1/"
+  #backupTargetCredentialSecret: s3-secret
+  #backupstorePollInterval: 30
+ingress:
+  enabled: true
+  ingressClassName: traefik
+  host: longhorn-prod.traunseenet.com
+  tls: true
+  tlsSecret: letsencrypt-prod-prod
+  path: /
+  annotations:
+    cert-manager.io/cluster-issuer: "letsencrypt-prod-backup"
+    traefik.ingress.kubernetes.io/router.middlewares: traefik-forward-auth@kubernetescrd
+longhornUI:
+  replicas: 1

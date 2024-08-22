@@ -1,0 +1,43 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: minio-deployment
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: minio
+  template:
+    metadata:
+      labels:
+        app: minio
+    spec:
+      containers:
+      - name: minio
+        image: minio/minio:RELEASE.2024-07-16T23-46-41Z
+        args:
+          - server
+          - --console-address
+          - ":9001"
+          - /data
+        env:
+        - name: MINIO_ROOT_USER
+          value: ${MINIO_ROOT_USER}
+        - name: MINIO_ROOT_PASSWORD
+          value: ${MINIO_ROOT_PASSWORD}
+        ports:
+        - containerPort: 9000
+        - containerPort: 9001
+        volumeMounts:
+        - name: storage
+          mountPath: /data
+        resources:
+          limits:
+            memory: "512Mi"
+            cpu: "500m"
+      volumes:
+      - name: storage
+        hostPath:
+          path: /storage/backups
+          type: Directory
+      restartPolicy: Always
