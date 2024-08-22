@@ -1,95 +1,30 @@
-apiVersion: v1
-kind: PersistentVolume
-metadata:
-  name: immich-pv-ml
-  namespace: immich
-  labels:
-    type: local
-spec:
-  persistentVolumeReclaimPolicy: Retain
-  storageClassName: manual
-  capacity:
-    storage: 10Gi
-  accessModes:
-    - ReadWriteMany
-  hostPath:
-    path: "/storage/immich/ml"
 ---
 apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
-  name: immich-pvc-ml
-  namespace: immich
+  name: immich-pvc-ml-longhorn
+  annotations:
+    numberOfReplicas: '1'
 spec:
   accessModes:
     - ReadWriteMany
   resources:
     requests:
       storage: 10Gi
-  storageClassName: manual
-  volumeMode: Filesystem
-  volumeName: immich-pv-ml
----
-apiVersion: v1
-kind: PersistentVolume
-metadata:
-  name: immich-pv-redis
-  namespace: immich
-  labels:
-    type: local
-spec:
-  persistentVolumeReclaimPolicy: Retain
-  storageClassName: manual
-  capacity:
-    storage: 5Gi
-  accessModes:
-    - ReadWriteMany
-  hostPath:
-    path: "/storage/immich/redis"
+  storageClassName: longhorn-storage
+status: {}
 ---
 apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
-  name: immich-pvc-redis
-  namespace: immich
-spec:
-  accessModes:
-    - ReadWriteMany
-  resources:
-    requests:
-      storage: 5Gi
-  storageClassName: manual
-  volumeMode: Filesystem
-  volumeName: immich-pv-redis
----
-apiVersion: v1
-kind: PersistentVolume
-metadata:
-  name: immich-pv-server
-  namespace: immich
-  labels:
-    type: local
-spec:
-  persistentVolumeReclaimPolicy: Retain
-  storageClassName: manual
-  capacity:
-    storage: 200Gi
-  accessModes:
-    - ReadWriteMany
-  hostPath:
-    path: "/storage/immich/server"
----
-apiVersion: v1
-kind: PersistentVolumeClaim
-metadata:
-  name: immich-pvc-server
-  namespace: immich
+  name: immich-pvc-server-longhorn
+  annotations:
+    numberOfReplicas: '1'
 spec:
   accessModes:
     - ReadWriteMany
   resources:
     requests:
       storage: 200Gi
-  storageClassName: manual
-  volumeMode: Filesystem
-  volumeName: immich-pv-server
+  storageClassName: longhorn-storage
+status: {}

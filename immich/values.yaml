@@ -14,7 +14,7 @@ env:
   IMMICH_MACHINE_LEARNING_URL: '{{ printf "http://%s-machine-learning:3003" .Release.Name }}'
 
 image:
-  tag: v1.111.0
+  tag: v1.112.1
 
 immich:
   metrics:
@@ -25,7 +25,7 @@ immich:
     library:
       # Automatically creating the library volume is not supported by this chart
       # You have to specify an existing PVC to use
-      existingClaim: immich-pvc-server
+      existingClaim: immich-pvc-server-longhorn
   # configuration is immich-config.json converted to yaml
   # ref: https://immich.app/docs/install/config-file/
   #
@@ -63,13 +63,6 @@ redis:
   architecture: standalone
   auth:
     enabled: false
-  persistence:
-    enabled: true
-    size: 10Gi
-    type: pvc
-    accessMode: ReadWriteMany
-    existingClaim: immich-pvc-redis
-      # storageClass: your-class
   image:
     repository: bitnami/redis
     tag: 7.2.4-debian-12-r12
@@ -104,9 +97,8 @@ machine-learning:
   persistence:
     cache:
       enabled: true
-      size: 10Gi
       # Optional: Set this to pvc to avoid downloading the ML models every start.
       type: pvc
       accessMode: ReadWriteMany
-      existingClaim: immich-pvc-ml
+      existingClaim: immich-pvc-ml-longhorn
       # storageClass: your-class

@@ -3,7 +3,7 @@ kind: Kustomization
 namespace: immich
 resources:
 - ingress.yaml
-- pvc.yaml
+#- pvc.yaml #only used for initial setup, restore from longhorn if lost
 helmCharts:
   - name: immich
     repo: https://immich-app.github.io/immich-charts
