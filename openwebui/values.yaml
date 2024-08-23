@@ -51,7 +51,7 @@ ingress:
 persistence:
   enabled: true
   # -- Use existingClaim if you want to re-use an existing Open WebUI PVC instead of creating a new one
-  existingClaim: "open-webui-longhorn"
+  existingClaim: "open-webui-v2-longhorn"
   # -- If using multiple replicas, you must update accessModes to ReadWriteMany
   accessModes:
     - ReadWriteMany
@@ -83,8 +83,18 @@ openaiBaseApiUrl: ""
 # -- Additional environments variables on the output Deployment definition. Most up-to-date environment variables can be found here: https://docs.openwebui.com/getting-started/env-configuration/
 extraEnvVars:
   # -- Default API key value for Pipelines. Should be updated in a production deployment, or be changed to the required API key if not using Pipelines
-  - name: OPENAI_API_KEY
-    value: "0p3n-w3bu!" # not used or valid ;)
+  - name: ENABLE_OAUTH_SIGNUP
+    value: "true"
+  - name: OAUTH_CLIENT_ID
+    value: "${OPENWEBUI_OAUTH_CLIENT_ID}"
+  - name: OAUTH_CLIENT_SECRET
+    value: "${OPENWEBUI_OAUTH_CLIENT_SECRET}"
+  - name: OPENID_PROVIDER_URL
+    value: "${OPENWEBUI_OPENID_PROVIDER_URL}"
+  - name: OAUTH_PROVIDER_NAME
+    value: "${OPENWEBUI_OAUTH_PROVIDER_NAME}"
+  - name: OAUTH_SCOPES
+    value: "${OPENWEBUI_OAUTH_SCOPES}"
   # valueFrom:
   #   secretKeyRef:
   #     name: pipelines-api-key
