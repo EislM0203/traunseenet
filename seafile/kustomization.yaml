@@ -1,0 +1,13 @@
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+namespace: seafile
+resources:
+  - ingress.yaml
+  - mariadb/deployment.yaml
+#  - mariadb/pvc.yaml #only for init, if lost use backup
+  - mariadb/service.yaml
+  - memcached/deployment.yaml
+  - memcached/service.yaml
+  - server/deployment.yaml
+#  - server/pvc.yaml #only for init, if lost use backup
+  - server/service.yaml

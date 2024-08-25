@@ -1,0 +1,44 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: seafile
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: seafile
+  template:
+    metadata:
+      labels:
+        app: seafile
+    spec:
+      containers:
+        - name: seafile
+          image: seafileltd/seafile-mc:10.0-latest
+          env:
+            - name: DB_HOST
+              value: "mariadb"
+            - name: DB_ROOT_PASSWD
+              value: "${SEAFILE_DB_PWD}" #db's password
+            - name: TIME_ZONE
+              value: "Europe/Berlin"
+            - name: SEAFILE_ADMIN_EMAIL
+              value: "${SEAFILE_ADMIN_EMAIL}" #admin email
+            - name: SEAFILE_ADMIN_PASSWORD
+              value: "${SEAFILE_ADMIN_PASSWORD}" #admin password
+            - name: SEAFILE_SERVER_LETSENCRYPT
+              value: "false"
+            - name: SEAFILE_SERVER_HOSTNAME
+              value: "https://seafile.traunseenet.com" #hostname
+          ports:
+            - containerPort: 80
+          #        - containerPort: 443
+          #          name:  seafile-secure
+          volumeMounts:
+            - name: seafile-data
+              mountPath: /shared
+      volumes:
+        - name: seafile-data
+          persistentVolumeClaim:
+            claimName: seafile-data
+      restartPolicy: Always
