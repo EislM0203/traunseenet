@@ -1,0 +1,26 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  annotations:
+    traefik.ingress.kubernetes.io/router.entrypoints: websecure
+    traefik.ingress.kubernetes.io/router.middlewares: traefik-forward-auth@kubernetescrd
+    cert-manager.io/cluster-issuer: "letsencrypt-prod"
+  name: registry-ui
+  namespace: registry
+spec:
+  tls:
+    - hosts:
+        - registry.traunseenet.com
+      secretName: letsencrypt-prod-ui
+  ingressClassName: traefik
+  rules:
+    - host: registry.traunseenet.com
+      http:
+        paths:
+          - backend:
+              service:
+                name: docker-registry-ui-docker-registry-ui-user-interface
+                port:
+                  number: 80
+            path: /
+            pathType: Prefix

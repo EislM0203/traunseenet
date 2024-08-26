@@ -1,0 +1,10 @@
+kind: Service
+apiVersion: v1
+metadata:
+  name: registry-api-service
+spec:
+  selector:
+    app: docker-registry
+  ports:
+    - name: endpoint
+      port: 5000

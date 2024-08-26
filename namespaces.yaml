@@ -63,3 +63,9 @@ apiVersion: v1
 kind: Namespace
 metadata:
   name: seafile
+---
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: registry
+---
