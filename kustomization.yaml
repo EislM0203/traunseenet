@@ -15,3 +15,5 @@ resources:
 - forward-auth
 #- homepage
 #- keycloak
+- seafile
+- minio
