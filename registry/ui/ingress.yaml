@@ -19,7 +19,7 @@ spec:
         paths:
           - backend:
               service:
-                name: docker-registry-ui-docker-registry-ui-user-interface
+                name: docker-registry-ui
                 port:
                   number: 80
             path: /
