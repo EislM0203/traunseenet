@@ -7,11 +7,6 @@ metadata:
 apiVersion: v1
 kind: Namespace
 metadata:
-  name: nextcloud
----
-apiVersion: v1
-kind: Namespace
-metadata:
   name: jellyfin
 ---
 apiVersion: v1

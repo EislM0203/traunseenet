@@ -6,7 +6,6 @@ resources:
 - immich
 - traefik
 - homepage
-- nextcloud
 - navidrome
 - audiobookshelf
 - radiology
