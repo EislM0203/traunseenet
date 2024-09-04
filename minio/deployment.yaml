@@ -29,15 +29,15 @@ spec:
         - containerPort: 9000
         - containerPort: 9001
         volumeMounts:
-        - name: storage
+        - name: backup
           mountPath: /data
         resources:
           limits:
             memory: "512Mi"
             cpu: "500m"
       volumes:
-      - name: storage
+      - name: backup
         hostPath:
-          path: /storage/backups
+          path: /backup/backups
           type: Directory
       restartPolicy: Always

@@ -30,10 +30,8 @@ spec:
             - name: SINGLE_REGISTRY
               value: "true"
             #- name: REGISTRY_URL
-            #  value: "https://registry-api.traunseenet.com"
+            #  value: "https://registry.traunseenet.com"
             - name: NGINX_PROXY_PASS_URL
               value: "https://registry-api.traunseenet.com"
             - name: REGISTRY_SECURED
               value: "true"
-            - name: NGINX_PROXY_HEADER_Authorization
-              value: "Basic ${REGISTRY_AUTH_SECRET}"
