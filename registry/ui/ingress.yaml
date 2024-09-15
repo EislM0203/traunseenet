@@ -3,8 +3,9 @@ kind: Ingress
 metadata:
   annotations:
     traefik.ingress.kubernetes.io/router.entrypoints: websecure
-    traefik.ingress.kubernetes.io/router.middlewares: traefik-forward-auth@kubernetescrd
     cert-manager.io/cluster-issuer: "letsencrypt-prod"
+    traefik.ingress.kubernetes.io/router.middlewares: traefik-forward-auth@kubernetescrd
+    traefik.ingress.kubernetes.io/preserve-host: "true"
   name: registry-ui
   namespace: registry
 spec:
@@ -19,7 +20,7 @@ spec:
         paths:
           - backend:
               service:
-                name: docker-registry-ui-docker-registry-ui-user-interface
+                name: docker-registry-ui
                 port:
                   number: 80
             path: /
