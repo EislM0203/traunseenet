@@ -8,12 +8,11 @@ resources:
 - homepage
 - navidrome
 - audiobookshelf
-- radiology
-- observability
-- openwebui
+# unused due to resource constraints - observability
+# unused due to resource constraints - openwebui
 - forward-auth
-#- homepage
 #- keycloak
 - seafile
 - minio
 - registry
+- paperless
