@@ -30,4 +30,4 @@ Afterwards its just a matter of visiting the ingresses and setting up the apps. 
 * [Jaeger](https://github.com/jaegertracing)
 * [Opentelemetry Collector](https://github.com/open-telemetry/opentelemetry-collector)
 * [Traefik Reverse Proxy](https://github.com/traefik/traefik)
-* [Paperless-NGX](https://github.com/paperless-ngx)
+* [Paperless-ngx](https://github.com/paperless-ngx/paperless-ngx)

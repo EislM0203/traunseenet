@@ -4,5 +4,6 @@ namespace: navidrome
 resources:
 - deployment.yaml
 - ingress.yaml
+- ingress-classic.yaml
 #- pvc.yaml #only used for initial setup, restore from longhorn if lost
 - service.yaml

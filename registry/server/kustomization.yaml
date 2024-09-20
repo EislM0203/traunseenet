@@ -3,7 +3,7 @@ kind: Kustomization
 namespace: registry
 resources:
 - deployment.yaml
-- ingress.yaml
 - service.yaml
 - config.yaml
 #- pvc.yaml
+- ingress-api-local.yaml

@@ -1,0 +1,17 @@
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: registry-local
+spec:
+  ingressClassName: tailscale
+  tls:
+    - hosts:
+        - registry
+  defaultBackend:
+    service:
+      name: docker-registry-ui
+      port:
+        number: 80
+
+# depr TODO rework

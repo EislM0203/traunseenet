@@ -59,25 +59,7 @@ extraObjects:
           name: traefik
           targetPort: 9000
           protocol: TCP
-
-  - apiVersion: v1
-    data:
-      password: b2VmaWo0dXJmZG85MiE=
-      username: bWFya3VzZWlzbA==
-    kind: Secret
-    metadata:
-      name: traefik-dashboard-auth-secret
-      namespace: traefik
-    type: kubernetes.io/basic-auth
-
-  - apiVersion: traefik.io/v1alpha1
-    kind: Middleware
-    metadata:
-      name: traefik-dashboard-auth
-    spec:
-      basicAuth:
-        secret: traefik-dashboard-auth-secret
-
+  # Public ingress
   - apiVersion: networking.k8s.io/v1
     kind: Ingress
     metadata:
@@ -86,7 +68,6 @@ extraObjects:
         traefik.ingress.kubernetes.io/router.entrypoints: websecure
         cert-manager.io/cluster-issuer: "letsencrypt-prod"
         traefik.ingress.kubernetes.io/router.middlewares: traefik-forward-auth@kubernetescrd
-        #traefik.ingress.kubernetes.io/router.middlewares: traefik-dashboard-auth@kubernetescrd
     spec:
       tls:
         - hosts:
@@ -103,7 +84,7 @@ extraObjects:
                   service:
                     name: traefik-api
                     port:
-                      name: traefik
+                     name: traefik
 
 ingressRoute:
   dashboard:
@@ -126,6 +107,7 @@ service:
   annotations: {}
   labels: {}
   spec:
+    externalTrafficPolicy: Local
     loadBalancerIP: 10.0.0.179 #raspberrypi
   loadBalancerSourceRanges: []
   externalIPs: []
