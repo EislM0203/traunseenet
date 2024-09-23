@@ -16,3 +16,4 @@ resources:
 - minio
 - registry
 - paperless
+- headscale

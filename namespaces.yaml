@@ -64,3 +64,8 @@ kind: Namespace
 metadata:
   name: paperless
 ---
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: headscale
+---
