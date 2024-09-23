@@ -31,3 +31,4 @@ Afterwards its just a matter of visiting the ingresses and setting up the apps. 
 * [Opentelemetry Collector](https://github.com/open-telemetry/opentelemetry-collector)
 * [Traefik Reverse Proxy](https://github.com/traefik/traefik)
 * [Paperless-ngx](https://github.com/paperless-ngx/paperless-ngx)
+* [Headscale](https://github.com/juanfont/headscale)
