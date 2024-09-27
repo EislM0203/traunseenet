@@ -60,31 +60,31 @@ extraObjects:
           targetPort: 9000
           protocol: TCP
   # Public ingress
-  - apiVersion: networking.k8s.io/v1
-    kind: Ingress
-    metadata:
-      name: traefik-dashboard
-      annotations:
-        traefik.ingress.kubernetes.io/router.entrypoints: websecure
-        cert-manager.io/cluster-issuer: "letsencrypt-prod"
-        traefik.ingress.kubernetes.io/router.middlewares: traefik-forward-auth@kubernetescrd
-    spec:
-      tls:
-        - hosts:
-          - traefik-dashboard.traunseenet.com
-          secretName: letsencrypt-prod
-      ingressClassName: traefik
-      rules:
-        - host: traefik-dashboard.traunseenet.com
-          http:
-            paths:
-              - path: /
-                pathType: Prefix
-                backend:
-                  service:
-                    name: traefik-api
-                    port:
-                     name: traefik
+  #- apiVersion: networking.k8s.io/v1
+  #  kind: Ingress
+  #  metadata:
+  #    name: traefik-dashboard
+  #    annotations:
+  #      traefik.ingress.kubernetes.io/router.entrypoints: websecure
+  #      cert-manager.io/cluster-issuer: "letsencrypt-prod"
+  #      traefik.ingress.kubernetes.io/router.middlewares: traefik-forward-auth@kubernetescrd
+  #  spec:
+  #    tls:
+  #      - hosts:
+  #        - traefik-dashboard.traunseenet.com
+  #        secretName: letsencrypt-prod
+  #    ingressClassName: traefik
+  #    rules:
+  #      - host: traefik-dashboard.traunseenet.com
+  #        http:
+  #          paths:
+  #            - path: /
+  #              pathType: Prefix
+  #              backend:
+  #                service:
+  #                  name: traefik-api
+  #                  port:
+  #                   name: traefik
 
 ingressRoute:
   dashboard:

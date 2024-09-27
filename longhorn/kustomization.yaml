@@ -4,6 +4,7 @@ namespace: longhorn
 resources:
 - storage-classes.yaml
 - backup-secret.yaml
+- ingress-local.yaml
 helmCharts:
   - name: longhorn
     repo: https://charts.longhorn.io

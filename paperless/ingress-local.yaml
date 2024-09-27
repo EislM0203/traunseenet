@@ -4,22 +4,22 @@ metadata:
   annotations:
     traefik.ingress.kubernetes.io/router.entrypoints: websecure
     cert-manager.io/cluster-issuer: "letsencrypt-prod"
-  name: registry-ui-ingress
-  namespace: registry
+  name: paperless-ingress
+  namespace: paperless
 spec:
   tls:
     - hosts:
-        - registry.local.traunseenet.com
+        - paperless.local.traunseenet.com
       secretName: letsencrypt-prod-local
   ingressClassName: traefik
   rules:
-    - host: registry.local.traunseenet.com
+    - host: paperless.local.traunseenet.com
       http:
         paths:
           - backend:
               service:
-                name: docker-registry-ui
+                name: paperless-ngx
                 port:
-                  number: 80
+                  number: 8000
             path: /
             pathType: Prefix

@@ -16,6 +16,15 @@ kubectl apply -f namespaces.yaml
 
 Afterwards its just a matter of visiting the ingresses and setting up the apps. Happy hacking ;)
 
+## Docker
+Also, run 
+```shell
+cd ddns-updater
+docker compose up --detach --force-recreate --remove-orphans
+cd ../gluetun
+docker compose up --detach --force-recreate --remove-orphans
+```
+
 ## Currently deployed services
 * [Audiobookshelf](https://github.com/advplyr/audiobookshelf)
 * [Cert-Manager](https://github.com/cert-manager/cert-manager)

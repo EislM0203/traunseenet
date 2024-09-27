@@ -6,7 +6,7 @@ persistence:
   #backupTargetCredentialSecret: s3-secret
   #backupstorePollInterval: 30
 ingress:
-  enabled: true
+  enabled: false
   ingressClassName: traefik
   host: longhorn-prod.traunseenet.com
   tls: true

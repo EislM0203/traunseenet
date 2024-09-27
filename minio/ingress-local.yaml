@@ -4,22 +4,22 @@ metadata:
   annotations:
     traefik.ingress.kubernetes.io/router.entrypoints: websecure
     cert-manager.io/cluster-issuer: "letsencrypt-prod"
-  name: registry-ui-ingress
-  namespace: registry
+  name: minio-ingress
+  namespace: minio
 spec:
   tls:
     - hosts:
-        - registry.local.traunseenet.com
-      secretName: letsencrypt-prod-local
+        - s3.local.traunseenet.com
+      secretName: letsencrypt-prod
   ingressClassName: traefik
   rules:
-    - host: registry.local.traunseenet.com
+    - host: s3.local.traunseenet.com
       http:
         paths:
           - backend:
               service:
-                name: docker-registry-ui
+                name: minio-service
                 port:
-                  number: 80
+                  number: 9001
             path: /
             pathType: Prefix

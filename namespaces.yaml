@@ -1,8 +1,28 @@
 ---
+#apiVersion: v1
+#kind: Namespace
+#metadata:
+#  name: audiobookshelf
+---
 apiVersion: v1
 kind: Namespace
 metadata:
-  name: traefik
+  name: cert-manager
+---
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: headscale
+---
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: homepage
+---
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: immich
 ---
 apiVersion: v1
 kind: Namespace
@@ -12,32 +32,7 @@ metadata:
 apiVersion: v1
 kind: Namespace
 metadata:
-  name: navidrome
----
-apiVersion: v1
-kind: Namespace
-metadata:
-  name: immich
----
-#apiVersion: v1
-#kind: Namespace
-#metadata:
-#  name: open-webui
----
-#apiVersion: v1
-#kind: Namespace
-#metadata:
-#  name: observability
----
-apiVersion: v1
-kind: Namespace
-metadata:
   name: keycloak
----
-apiVersion: v1
-kind: Namespace
-metadata:
-  name: cert-manager
 ---
 apiVersion: v1
 kind: Namespace
@@ -52,7 +47,22 @@ metadata:
 apiVersion: v1
 kind: Namespace
 metadata:
-  name: seafile
+  name: navidrome
+---
+#apiVersion: v1
+#kind: Namespace
+#metadata:
+#  name: observability
+#---
+#apiVersion: v1
+#kind: Namespace
+#metadata:
+#  name: open-webui
+#---
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: paperless
 ---
 apiVersion: v1
 kind: Namespace
@@ -62,10 +72,10 @@ metadata:
 apiVersion: v1
 kind: Namespace
 metadata:
-  name: paperless
+  name: seafile
 ---
 apiVersion: v1
 kind: Namespace
 metadata:
-  name: headscale
+  name: traefik
 ---

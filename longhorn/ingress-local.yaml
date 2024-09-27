@@ -4,21 +4,21 @@ metadata:
   annotations:
     traefik.ingress.kubernetes.io/router.entrypoints: websecure
     cert-manager.io/cluster-issuer: "letsencrypt-prod"
-  name: registry-ui-ingress
-  namespace: registry
+  name: longhorn-ingress
+  namespace: longhorn
 spec:
   tls:
     - hosts:
-        - registry.local.traunseenet.com
-      secretName: letsencrypt-prod-local
+        - longhorn.local.traunseenet.com
+      secretName: letsencrypt-prod
   ingressClassName: traefik
   rules:
-    - host: registry.local.traunseenet.com
+    - host: longhorn.local.traunseenet.com
       http:
         paths:
           - backend:
               service:
-                name: docker-registry-ui
+                name: longhorn-frontend
                 port:
                   number: 80
             path: /
