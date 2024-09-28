@@ -1,18 +1,25 @@
----
 apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
-  name: registry-api-local
+  annotations:
+    traefik.ingress.kubernetes.io/router.entrypoints: websecure
+    cert-manager.io/cluster-issuer: "letsencrypt-prod"
+  name: registry-api-ingress
+  namespace: registry
 spec:
-  ingressClassName: tailscale
   tls:
     - hosts:
-        - registry-api
-  defaultBackend:
-    service:
-      name: registry-api-service
-      port:
-        number: 5000
-        
-
-# depr TODO rework
+        - registry-api.local.traunseenet.com
+      secretName: letsencrypt-prod-local
+  ingressClassName: traefik
+  rules:
+    - host: registry-api.local.traunseenet.com
+      http:
+        paths:
+          - backend:
+              service:
+                name: registry-api-service
+                port:
+                  number: 5000
+            path: /
+            pathType: Prefix

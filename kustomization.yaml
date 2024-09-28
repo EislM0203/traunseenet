@@ -1,18 +1,20 @@
 apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
 resources:
-- jellyfin
+# unused due to lack of interest - audiobookshelf
 - cert-manager
-- immich
-- traefik
+- forward-auth
+- headscale
 - homepage
+- immich
+- jellyfin
+#- keycloak todo, search for correct helm chart link
+- longhorn
+- minio
 - navidrome
-- audiobookshelf
 # unused due to resource constraints - observability
 # unused due to resource constraints - openwebui
-- forward-auth
-#- keycloak
-- seafile
-- minio
-- registry
 - paperless
+- registry
+- seafile
+- traefik

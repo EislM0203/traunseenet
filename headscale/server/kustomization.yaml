@@ -1,8 +1,10 @@
 apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
-namespace: jellyfin
+namespace: headscale
 resources:
 - deployment.yaml
-- ingress-local.yaml
-- pvc.yaml
 - service.yaml
+- configmap.yaml
+- configmap-acl.yaml
+- ingress-server.yaml
+#- pvc.yaml

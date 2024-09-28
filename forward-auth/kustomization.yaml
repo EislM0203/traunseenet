@@ -6,3 +6,4 @@ resources:
   - secret.yaml
   - middleware.yaml
   - ingress.yaml
+  - service.yaml

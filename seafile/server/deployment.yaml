@@ -29,7 +29,7 @@ spec:
             - name: SEAFILE_SERVER_LETSENCRYPT
               value: "false"
             - name: SEAFILE_SERVER_HOSTNAME
-              value: "https://seafile.traunseenet.com" #hostname
+              value: "https://seafile.local.traunseenet.com" #hostname
           ports:
             - containerPort: 80
           #        - containerPort: 443

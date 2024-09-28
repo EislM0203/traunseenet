@@ -1,6 +1,0 @@
-ui:
-  dockerRegistryUrl: "https://registry-api.traunseenet.com"
-  deleteImages: true
-  defaultTheme: "dark"
-  registrySecured: true
-  showCatalogNbTags: true

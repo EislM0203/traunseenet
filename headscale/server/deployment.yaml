@@ -1,0 +1,40 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: headscale
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: headscale
+  template:
+    metadata:
+      labels:
+        app: headscale
+    spec:
+      containers:
+      - name: headscale
+        image: headscale/headscale:stable
+        command: ["headscale", "serve"]
+        ports:
+        - containerPort: 8080
+        - containerPort: 9090
+        volumeMounts:
+        - name: headscale-longhorn
+          mountPath: /var/lib/headscale
+        - name: config-volume
+          mountPath: /etc/headscale
+        - name: acl-config-volume
+          mountPath: /etc/headscale/acl
+      volumes:
+      - name: config-volume
+        configMap:
+          name: headscale-config
+      - name: acl-config-volume
+        configMap:
+          name: acl-config
+      - name: headscale-longhorn
+        persistentVolumeClaim:
+          claimName: headscale-longhorn
+
+          

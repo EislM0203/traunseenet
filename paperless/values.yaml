@@ -25,7 +25,7 @@ env:
   PAPERLESS_WEBSERVER_WORKERS: 1
   PAPERLESS_OCR_LANGUAGES: "deu+eng"
   PAPERLESS_SECRET_KEY: "${PAPERLESS_SECRET_KEY}"
-  PAPERLESS_URL: "https://paperless.traunseenet.com"
+  PAPERLESS_URL: "https://paperless.local.traunseenet.com"
   PAPERLESS_APPS: "allauth.socialaccount.providers.openid_connect"
   PAPERLESS_SOCIALACCOUNT_PROVIDERS: '{"openid_connect": {"APPS": [{"provider_id": "keycloak","name": "Keycloak","client_id": "${PAPERLESS_CLIENT_ID}","secret": "${PAPERLESS_CLIENT_SECRET}","settings": { "server_url": "${PAPERLESS_OPENID_PROVIDER_URL}"}}]}}'
   PAPERLESS_SOCIALACCOUNT_ALLOW_SIGNUPS: false

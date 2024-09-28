@@ -30,4 +30,4 @@ spec:
             - name: SINGLE_REGISTRY
               value: "true"
             - name: REGISTRY_URL
-              value: "https://registry-api.taild128a7.ts.net"
+              value: "https://registry-api.local.traunseenet.com"

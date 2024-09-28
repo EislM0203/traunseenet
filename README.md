@@ -16,6 +16,15 @@ kubectl apply -f namespaces.yaml
 
 Afterwards its just a matter of visiting the ingresses and setting up the apps. Happy hacking ;)
 
+## Docker
+Also, run 
+```shell
+cd ddns-updater
+docker compose up --detach --force-recreate --remove-orphans
+cd ../gluetun
+docker compose up --detach --force-recreate --remove-orphans
+```
+
 ## Currently deployed services
 * [Audiobookshelf](https://github.com/advplyr/audiobookshelf)
 * [Cert-Manager](https://github.com/cert-manager/cert-manager)
@@ -31,3 +40,4 @@ Afterwards its just a matter of visiting the ingresses and setting up the apps. 
 * [Opentelemetry Collector](https://github.com/open-telemetry/opentelemetry-collector)
 * [Traefik Reverse Proxy](https://github.com/traefik/traefik)
 * [Paperless-ngx](https://github.com/paperless-ngx/paperless-ngx)
+* [Headscale](https://github.com/juanfont/headscale)
