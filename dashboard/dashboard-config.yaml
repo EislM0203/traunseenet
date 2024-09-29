@@ -27,6 +27,9 @@ data:
         - Longhorn:
             icon: longhorn.png
             href: https://longhorn.local.traunseenet.com
+        - MinIO:
+            icon: minio.png
+            href: https://s3.local.traunseenet.com
         - Paperless-ngx:
             icon: paperless.png
             href: https://paperless.local.traunseenet.com
