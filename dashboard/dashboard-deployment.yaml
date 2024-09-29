@@ -1,0 +1,77 @@
+---
+# yaml-language-server: $schema=https://raw.githubusercontent.com/instrumenta/kubernetes-json-schema/master/v1.14.0/deployment.json
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: dashboard-homepage
+  labels:
+    app: dashboard-homepage
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: dashboard-homepage
+  strategy:
+    type: Recreate
+  template:
+    metadata:
+      labels:
+        # io.kompose.network/dockerfile-default: "true"
+        app: dashboard-homepage
+    spec:
+      containers:
+        - image: ghcr.io/gethomepage/homepage:v0.9.10
+          name: dashboard-homepage
+          resources:
+            requests:
+              cpu: 1m
+              memory: 1M
+            limits:
+              cpu: 500m
+              memory: 200M
+          livenessProbe:
+            httpGet:
+              path: /
+              port: 3000
+              scheme: HTTP
+            initialDelaySeconds: 5
+          volumeMounts:
+            - mountPath: /app/config/settings.yaml
+              name: dashboard-homepage-settings
+              subPath: settings.yaml
+            - mountPath: /app/config/bookmarks.yaml
+              name: dashboard-homepage-bookmarks
+              subPath: bookmarks.yaml
+            - mountPath: /app/config/docker.yaml
+              name: dashboard-homepage-docker
+              subPath: docker.yaml
+            - mountPath: /app/config/kubernetes.yaml
+              name: dashboard-homepage-kubernetes
+              subPath: kubernetes.yaml
+            - mountPath: /app/config/widgets.yaml
+              name: dashboard-homepage-widgets
+              subPath: widgets.yaml
+            - mountPath: /app/config/services.yaml
+              name: dashboard-homepage-services
+              subPath: services.yaml
+      restartPolicy: Always
+      volumes:
+        - name: dashboard-homepage-services
+          configMap:
+            name: dashboard-homepage-services
+        - name: dashboard-homepage-bookmarks
+          configMap:
+            name: dashboard-homepage-bookmarks
+        - name: dashboard-homepage-docker
+          configMap:
+            name: dashboard-homepage-docker
+        - name: dashboard-homepage-kubernetes
+          configMap:
+            name: dashboard-homepage-kubernetes
+        - name: dashboard-homepage-widgets
+          configMap:
+            name: dashboard-homepage-widgets
+        - name: dashboard-homepage-settings
+          configMap:
+            name: dashboard-homepage-settings
+status: {}

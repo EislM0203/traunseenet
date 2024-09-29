@@ -1,0 +1,9 @@
+# yaml-language-server: $schema=https://json.schemastore.org/kustomization
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+namespace: dashboard
+resources:
+  - dashboard-config.yaml
+  - dashboard-deployment.yaml
+  - dashboard-ingress.yaml
+  - dashboard-service.yaml

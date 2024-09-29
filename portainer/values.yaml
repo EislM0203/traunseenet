@@ -1,0 +1,21 @@
+ingress:
+  enabled: true
+  ingressClassName: "traefik"
+  annotations: 
+    traefik.ingress.kubernetes.io/router.entrypoints: websecure
+    cert-manager.io/cluster-issuer: "letsencrypt-prod"
+  hosts:
+    - host: portainer.local.traunseenet.com
+      paths:
+        - path: "/"
+  tls:
+    - hosts:
+        - portainer.local.traunseenet.com
+      secretName: letsencrypt-prod-local
+
+service:
+  type: ClusterIP
+
+persistance:
+  enabled: true
+  storageClass: longhorn-storage
