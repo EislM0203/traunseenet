@@ -10,7 +10,7 @@ spec:
   tls:
     - hosts:
       - traefik-dashboard.local.traunseenet.com
-      secretName: letsencrypt-prod
+      secretName: letsencrypt-prod-local
   ingressClassName: traefik
   rules:
     - host: traefik-dashboard.local.traunseenet.com

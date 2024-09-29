@@ -3,7 +3,7 @@ data:
   services.yaml: |
     - Public Services:
         - Developer Portfolio:
-            icon: mountain.png
+            icon: kubernetes.png
             href: https://homepage.traunseenet.com/
         - Headscale:
             icon: tailscale.png
@@ -111,9 +111,11 @@ data:
     - search:
         provider: brave
         target: _self
-    - format:
-      timeStyle: short
-      hourCycle: h23
+    - datetime:
+        text_size: xl
+        format:
+          timeStyle: short
+          hourCycle: h23
 kind: ConfigMap
 metadata:
   name: dashboard-homepage-widgets
