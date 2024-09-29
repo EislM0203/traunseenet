@@ -10,7 +10,7 @@ spec:
   tls:
     - hosts:
         - registry.local.traunseenet.com
-      secretName: letsencrypt-prod-local
+      secretName: letsencrypt-prod
   ingressClassName: traefik
   rules:
     - host: registry.local.traunseenet.com

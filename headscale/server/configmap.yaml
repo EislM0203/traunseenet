@@ -278,6 +278,7 @@ data:
       # List of DNS servers to expose to clients.
       nameservers:
         global:
+          - 100.64.0.1
           - 1.1.1.1
           - 1.0.0.1
           - 2606:4700:4700::1111
@@ -304,22 +305,14 @@ data:
       # Extra DNS records
       # so far only A-records are supported (on the tailscale side)
       # See https://github.com/juanfont/headscale/blob/main/docs/dns-records.md#Limitations
-      extra_records:
+      extra_records: []
       #   - name: "grafana.myvpn.example.com"
       #     type: "A"
       #     value: "100.64.0.3"
       #
       #   # you can also put it in one line
-         - { name: "navidrome.local.traunseenet.com", type: "A", value: "100.64.0.1" }
-         - { name: "audiobooks.local.traunseenet.com", type: "A", value: "100.64.0.1" }
-         - { name: "jellyfin.local.traunseenet.com", type: "A", value: "100.64.0.1" }
-         - { name: "longhorn.local.traunseenet.com", type: "A", value: "100.64.0.1" }
-         - { name: "s3.local.traunseenet.com", type: "A", value: "100.64.0.1" }
-         - { name: "paperless.local.traunseenet.com", type: "A", value: "100.64.0.1" }
-         - { name: "registry-api.local.traunseenet.com", type: "A", value: "100.64.0.1" }
-         - { name: "registry.local.traunseenet.com", type: "A", value: "100.64.0.1" }
-         - { name: "seafile.local.traunseenet.com", type: "A", value: "100.64.0.1" }
-         - { name: "traefik-dashboard.local.traunseenet.com", type: "A", value: "100.64.0.1" }
+      #   - { name: "navidrome.local.traunseenet.com", type: "A", value: "100.64.0.1" }
+
       # DEPRECATED
       # Use the username as part of the DNS name for nodes, with this option enabled:
       # node1.username.example.com

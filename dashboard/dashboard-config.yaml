@@ -1,0 +1,121 @@
+apiVersion: v1
+data:
+  services.yaml: |
+    - Public Services:
+        - Developer Portfolio:
+            icon: kubernetes.png
+            href: https://homepage.traunseenet.com/
+        - Headscale:
+            icon: tailscale.png
+            href: https://headscale.traunseenet.com/
+        - Immich:
+            icon: immich.png
+            href: https://immich.traunseenet.com/
+        - Keycloak:
+            icon: keycloak.png
+            href: https://keycloak-prod.traunseenet.com/
+        - Jaeger & Opentelemetry Collector (offline):
+            icon: jaeger.png
+            href: https://jaeger.traunseenet.com/
+        - Open-WebUI (offline):
+            icon: ollama.png
+            href: https://openwebui.traunseenet.com/
+    - Private Services:
+        - Jellyfin:
+            icon: jellyfin.png
+            href: https://jellyfin.local.traunseenet.com
+        - Longhorn:
+            icon: longhorn.png
+            href: https://longhorn.local.traunseenet.com
+        - Paperless-ngx:
+            icon: paperless.png
+            href: https://paperless.local.traunseenet.com
+        - Portainer:
+            icon: portainer.png
+            href: https://portainer.local.traunseenet.com
+        - Container Registry:
+            icon: docker.png
+            href: https://registry.local.traunseenet.com
+        - Seafile:
+            icon: seafile.png
+            href: https://seafile.local.traunseenet.com
+        - Traefik:
+            icon: traefik.png
+            href: https://traefik-dashboard.local.traunseenet.com
+
+kind: ConfigMap
+metadata:
+  name: dashboard-homepage-services
+---
+apiVersion: v1
+data:
+  settings.yaml: |
+    theme: dark
+    color: slate
+    language: en
+    target: _self
+    headerStyle: clean
+    layout:
+      Public Services:
+      Private Services:
+kind: ConfigMap
+metadata:
+  name: dashboard-homepage-settings
+---
+apiVersion: v1
+data:
+  bookmarks.yaml: |
+    # For configuration options and examples, please see:
+    # https://github.com/benphelps/homepage/wiki/Bookmarks
+    - Developer:
+        - Github - EislM0203:
+            - abbr: GH
+              href: https://github.com/EislM0203
+    - Social:
+        - Linkedin - Markus Eisl:
+            - abbr: LI
+              href: https://www.linkedin.com/in/markus-eisl-b541671a0/
+kind: ConfigMap
+metadata:
+  name: dashboard-homepage-bookmarks
+---
+apiVersion: v1
+data:
+  docker.yaml: |
+    # For configuration options and examples, please see:
+    # https://github.com/benphelps/homepage/wiki/Docker-Integration
+
+    # my-docker:
+    #   host: 127.0.0.1
+    #   port: 2375
+
+    # my-docker:
+    #   socket: /var/run/docker.sock
+kind: ConfigMap
+metadata:
+  name: dashboard-homepage-docker
+---
+apiVersion: v1
+data:
+  kubernetes.yaml: |
+    # sample kubernetes config
+kind: ConfigMap
+metadata:
+  name: dashboard-homepage-kubernetes
+---
+apiVersion: v1
+data:
+  widgets.yaml: |
+    # For configuration options and examples, please see:
+    # https://github.com/benphelps/homepage/wiki/Information-Widgets
+    - search:
+        provider: brave
+        target: _self
+    - datetime:
+        text_size: xl
+        format:
+          timeStyle: short
+          hourCycle: h23
+kind: ConfigMap
+metadata:
+  name: dashboard-homepage-widgets
