@@ -119,6 +119,15 @@ data:
         format:
           timeStyle: short
           hourCycle: h23
+    - openmeteo:
+        label: Altmünster # optional
+        latitude: 47.9008833
+        longitude: 13.7632829
+        timezone: Europe/Vienna # optional
+        units: metric # or imperial
+        cache: 5 # Time in minutes to cache API responses, to stay within limits
+        format: # optional, Intl.NumberFormat options
+          maximumFractionDigits: 1
 kind: ConfigMap
 metadata:
   name: dashboard-homepage-widgets
