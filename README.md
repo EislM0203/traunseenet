@@ -18,7 +18,7 @@ Afterwards its just a matter of visiting the ingresses and setting up the apps. 
 Docker containers managed by portainer.
 
 ## Currently deployed services
-* [Audiobookshelf](https://github.com/advplyr/audiobookshelf)
+* [Audiobookshelf](https://github.com/advplyr/audiobookshelf) (offline)
 * [Cert-Manager](https://github.com/cert-manager/cert-manager)
 * [Foward-Auth](https://github.com/jordemort/traefik-forward-auth/pkgs/container/traefik-forward-auth)
 * [Keycloak](https://github.com/keycloak/keycloak)
@@ -28,10 +28,11 @@ Docker containers managed by portainer.
 * [Navidrome](https://github.com/navidrome/navidrome)
 * [Open Web Ui](https://github.com/open-webui/open-webui)
 * [Seafile](https://github.com/haiwen/seafile)
-* [Jaeger](https://github.com/jaegertracing)
-* [Opentelemetry Collector](https://github.com/open-telemetry/opentelemetry-collector)
+* [Jaeger](https://github.com/jaegertracing) (offline)
+* [Opentelemetry Collector](https://github.com/open-telemetry/opentelemetry-collector)(offline)
 * [Traefik Reverse Proxy](https://github.com/traefik/traefik)
 * [Paperless-ngx](https://github.com/paperless-ngx/paperless-ngx)
 * [Headscale](https://github.com/juanfont/headscale)
 * [Portainer](https://github.com/portainer/portainer)
 * [Dashboard](https://github.com/gethomepage/homepage)
+* [Usememos](https://github.com/usememos/memos)

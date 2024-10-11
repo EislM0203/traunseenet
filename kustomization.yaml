@@ -18,3 +18,4 @@ resources:
 - registry
 - seafile
 - traefik
+- utility

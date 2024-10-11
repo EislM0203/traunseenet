@@ -1,0 +1,31 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: memos
+  labels:
+    app: memos
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: memos
+  template:
+    metadata:
+      labels:
+        app: memos
+    spec:
+      containers:
+        - name: memos
+          image: neosmemo/memos:stable
+          volumeMounts:
+            - mountPath: /var/opt/memos
+              name: memos-storage
+          ports:
+            - containerPort: 5230
+          env: 
+            - name: MEMOS_PORT
+              value: "5230"
+      volumes:
+        - name: memos-storage
+          persistentVolumeClaim:
+            claimName: usememos-longhorn

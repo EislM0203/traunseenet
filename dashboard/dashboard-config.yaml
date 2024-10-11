@@ -5,46 +5,84 @@ data:
         - Developer Portfolio:
             icon: kubernetes.png
             href: https://homepage.traunseenet.com/
+            ping: https://homepage.traunseenet.com/
+            description: My self-made portfolio website
         - Headscale:
             icon: tailscale.png
             href: https://headscale.traunseenet.com/
+            ping: https://headscale.traunseenet.com/
+            description: Self-hosted version of the tailscale coordination server
         - Immich:
             icon: immich.png
             href: https://immich.traunseenet.com/
+            ping: https://immich.traunseenet.com/
+            description: Photo and Video store
         - Keycloak:
             icon: keycloak.png
             href: https://keycloak-prod.traunseenet.com/
-        - Jaeger & Opentelemetry Collector (offline):
-            icon: jaeger.png
-            href: https://jaeger.traunseenet.com/
-        - Open-WebUI (offline):
+            ping: https://keycloak-prod.traunseenet.com/
+            description: Authentication mechanism for most services in the cluster
+        - Open-WebUI:
             icon: ollama.png
             href: https://openwebui.traunseenet.com/
+            ping: https://openwebui.traunseenet.com/
+            description: Web-Ui for self-hosted LLMs
+        - Usememos:
+            icon: todo.png
+            href: https://usememos.traunseenet.com/
+            ping: https://usememos.traunseenet.com/
+            description: Keeping ToDos & Notes up to date
     - Private Services:
+        - Jaeger & Opentelemetry Collector:
+            icon: jaeger.png
+            href: https://jaeger.local.traunseenet.com/
+            ping: https://jaeger.local.traunseenet.com/
+            description: Observability Backends
         - Jellyfin:
             icon: jellyfin.png
             href: https://jellyfin.local.traunseenet.com
+            ping: https://jellyfin.local.traunseenet.com
+            description: Personal media server
         - Longhorn:
             icon: longhorn.png
             href: https://longhorn.local.traunseenet.com
+            ping: https://longhorn.local.traunseenet.com
+            description: Volume & backup manager
         - MinIO:
             icon: minio.png
             href: https://s3.local.traunseenet.com
+            ping: https://s3.local.traunseenet.com
+            description: Self-hosted S3 bucket for backups
         - Paperless-ngx:
             icon: paperless.png
             href: https://paperless.local.traunseenet.com
+            ping: https://paperless.local.traunseenet.com
+            description: Organize and index your scanned documents
         - Portainer:
             icon: portainer.png
             href: https://portainer.local.traunseenet.com
+            ping: https://portainer.local.traunseenet.com
+            description: Manage docker containers & cluster
         - Container Registry:
             icon: docker.png
             href: https://registry.local.traunseenet.com
+            ping: https://registry-api.local.traunseenet.com
+            description: Self-hosted container registry
+        - Container Registry UI:
+            icon: docker.png
+            href: https://registry.local.traunseenet.com
+            ping: https://registry.local.traunseenet.com
+            description: UI for the container registry
         - Seafile:
             icon: seafile.png
             href: https://seafile.local.traunseenet.com
+            ping: https://seafile.local.traunseenet.com
+            description: Traditional file storage/sharing/syncing
         - Traefik:
             icon: traefik.png
             href: https://traefik-dashboard.local.traunseenet.com
+            ping: https://traefik-dashboard.local.traunseenet.com
+            description: Ingress & Reverse Proxy for all services
 
 kind: ConfigMap
 metadata:
