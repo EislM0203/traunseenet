@@ -2,6 +2,7 @@ apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
 namespace: seafile
 resources:
+  - secrets.yaml
   - ingress-local.yaml
   - mariadb/deployment.yaml
 #  - mariadb/pvc.yaml #only for init, if lost use backup

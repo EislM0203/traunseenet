@@ -19,13 +19,22 @@ spec:
             - name: DB_HOST
               value: "mariadb"
             - name: DB_ROOT_PASSWD
-              value: "${SEAFILE_DB_PWD}" #db's password
+              valueFrom:
+                secretKeyRef:
+                  name: seafile-secret
+                  key: dbpwd
             - name: TIME_ZONE
               value: "Europe/Berlin"
             - name: SEAFILE_ADMIN_EMAIL
-              value: "${SEAFILE_ADMIN_EMAIL}" #admin email
+              valueFrom:
+                secretKeyRef:
+                  name: seafile-secret
+                  key: email
             - name: SEAFILE_ADMIN_PASSWORD
-              value: "${SEAFILE_ADMIN_PASSWORD}" #admin password
+              valueFrom:
+                secretKeyRef:
+                  name: seafile-secret
+                  key: password
             - name: SEAFILE_SERVER_LETSENCRYPT
               value: "false"
             - name: SEAFILE_SERVER_HOSTNAME
