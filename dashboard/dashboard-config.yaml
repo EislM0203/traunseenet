@@ -42,7 +42,7 @@ data:
             icon: jellyfin.png
             href: https://jellyfin.local.traunseenet.com
             ping: https://jellyfin.local.traunseenet.com
-            description: Personal media server
+            description: Personal media streaming server
         - Longhorn:
             icon: longhorn.png
             href: https://longhorn.local.traunseenet.com
