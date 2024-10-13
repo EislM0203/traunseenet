@@ -21,7 +21,7 @@ spec:
     spec:
       containers:
         - image: ghcr.io/gethomepage/homepage:v0.9.10
-          name: dashboard-homepage
+          name: dashboard-homepage-deployment
           resources:
             requests:
               cpu: 1m
