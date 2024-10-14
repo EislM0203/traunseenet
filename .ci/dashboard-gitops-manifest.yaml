@@ -1,0 +1,291 @@
+apiVersion: v1
+data:
+  bookmarks.yaml: |
+    # For configuration options and examples, please see:
+    # https://github.com/benphelps/homepage/wiki/Bookmarks
+    - Developer:
+        - Github - EislM0203:
+            - abbr: GH
+              href: https://github.com/EislM0203
+    - Social:
+        - Linkedin - Markus Eisl:
+            - abbr: LI
+              href: https://www.linkedin.com/in/markus-eisl-b541671a0/
+kind: ConfigMap
+metadata:
+  name: dashboard-homepage-bookmarks
+  namespace: dashboard
+---
+apiVersion: v1
+data:
+  docker.yaml: |
+    # For configuration options and examples, please see:
+    # https://github.com/benphelps/homepage/wiki/Docker-Integration
+
+    # my-docker:
+    #   host: 127.0.0.1
+    #   port: 2375
+
+    # my-docker:
+    #   socket: /var/run/docker.sock
+kind: ConfigMap
+metadata:
+  name: dashboard-homepage-docker
+  namespace: dashboard
+---
+apiVersion: v1
+data:
+  kubernetes.yaml: |
+    # sample kubernetes config
+kind: ConfigMap
+metadata:
+  name: dashboard-homepage-kubernetes
+  namespace: dashboard
+---
+apiVersion: v1
+data:
+  services.yaml: |
+    - Public Services:
+        - Developer Portfolio:
+            icon: kubernetes.png
+            href: https://homepage.traunseenet.com/
+            ping: https://homepage.traunseenet.com/
+            description: My self-made portfolio website
+        - Headscale:
+            icon: tailscale.png
+            href: https://headscale.traunseenet.com/
+            ping: https://headscale.traunseenet.com/
+            description: Self-hosted version of the tailscale coordination server
+        - Immich:
+            icon: immich.png
+            href: https://immich.traunseenet.com/
+            ping: https://immich.traunseenet.com/
+            description: Photo and Video store
+        - Keycloak:
+            icon: keycloak.png
+            href: https://keycloak-prod.traunseenet.com/
+            ping: https://keycloak-prod.traunseenet.com/
+            description: Authentication mechanism for most services in the cluster
+        - Open-WebUI:
+            icon: ollama.png
+            href: https://openwebui.traunseenet.com/
+            ping: https://openwebui.traunseenet.com/
+            description: Web-Ui for self-hosted LLMs
+        - Usememos:
+            icon: todo.png
+            href: https://usememos.traunseenet.com/
+            ping: https://usememos.traunseenet.com/
+            description: Keeping ToDos & Notes up to date
+    - Private Services:
+        - Jaeger & Opentelemetry Collector:
+            icon: jaeger.png
+            href: https://jaeger.local.traunseenet.com/
+            ping: https://jaeger.local.traunseenet.com/
+            description: Observability Backends
+        - Jellyfin:
+            icon: jellyfin.png
+            href: https://jellyfin.local.traunseenet.com
+            ping: https://jellyfin.local.traunseenet.com
+            description: Personal media streaming server
+        - Longhorn:
+            icon: longhorn.png
+            href: https://longhorn.local.traunseenet.com
+            ping: https://longhorn.local.traunseenet.com
+            description: Volume & backup manager
+        - MinIO:
+            icon: minio.png
+            href: https://s3.local.traunseenet.com
+            ping: https://s3.local.traunseenet.com
+            description: Self-hosted S3 bucket for backups
+        - Paperless-ngx:
+            icon: paperless.png
+            href: https://paperless.local.traunseenet.com
+            ping: https://paperless.local.traunseenet.com
+            description: Organize and index your scanned documents
+        - Portainer:
+            icon: portainer.png
+            href: https://portainer.local.traunseenet.com
+            ping: https://portainer.local.traunseenet.com
+            description: Manage docker containers & cluster
+        - Container Registry:
+            icon: docker.png
+            href: https://registry.local.traunseenet.com
+            ping: https://registry-api.local.traunseenet.com
+            description: Self-hosted container registry
+        - Container Registry UI:
+            icon: docker.png
+            href: https://registry.local.traunseenet.com
+            ping: https://registry.local.traunseenet.com
+            description: UI for the container registry
+        - Seafile:
+            icon: seafile.png
+            href: https://seafile.local.traunseenet.com
+            ping: https://seafile.local.traunseenet.com
+            description: Traditional file storage/sharing/syncing
+        - Traefik:
+            icon: traefik.png
+            href: https://traefik-dashboard.local.traunseenet.com
+            ping: https://traefik-dashboard.local.traunseenet.com
+            description: Ingress & Reverse Proxy for all services
+kind: ConfigMap
+metadata:
+  name: dashboard-homepage-services
+  namespace: dashboard
+---
+apiVersion: v1
+data:
+  settings.yaml: |
+    theme: dark
+    color: slate
+    language: en
+    target: _self
+    headerStyle: clean
+    layout:
+      Public Services:
+      Private Services:
+kind: ConfigMap
+metadata:
+  name: dashboard-homepage-settings
+  namespace: dashboard
+---
+apiVersion: v1
+data:
+  widgets.yaml: |
+    # For configuration options and examples, please see:
+    # https://github.com/benphelps/homepage/wiki/Information-Widgets
+    - search:
+        provider: brave
+        target: _self
+    - datetime:
+        text_size: xl
+        format:
+          timeStyle: short
+          hourCycle: h23
+    - openmeteo:
+        label: Altmünster # optional
+        latitude: 47.9008833
+        longitude: 13.7632829
+        timezone: Europe/Vienna # optional
+        units: metric # or imperial
+        cache: 5 # Time in minutes to cache API responses, to stay within limits
+        format: # optional, Intl.NumberFormat options
+          maximumFractionDigits: 1
+kind: ConfigMap
+metadata:
+  name: dashboard-homepage-widgets
+  namespace: dashboard
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: dashboard-homepage
+  namespace: dashboard
+spec:
+  ports:
+  - name: http
+    port: 3000
+    targetPort: 3000
+  selector:
+    app: dashboard-homepage
+  type: ClusterIP
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: dashboard-homepage
+  name: dashboard-homepage
+  namespace: dashboard
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: dashboard-homepage
+  strategy:
+    type: Recreate
+  template:
+    metadata:
+      labels:
+        app: dashboard-homepage
+    spec:
+      containers:
+      - image: ghcr.io/gethomepage/homepage:v0.9.10
+        livenessProbe:
+          httpGet:
+            path: /
+            port: 3000
+            scheme: HTTP
+          initialDelaySeconds: 5
+        name: dashboard-homepage-deployment
+        resources:
+          limits:
+            cpu: 500m
+            memory: 200M
+          requests:
+            cpu: 1m
+            memory: 1M
+        volumeMounts:
+        - mountPath: /app/config/settings.yaml
+          name: dashboard-homepage-settings
+          subPath: settings.yaml
+        - mountPath: /app/config/bookmarks.yaml
+          name: dashboard-homepage-bookmarks
+          subPath: bookmarks.yaml
+        - mountPath: /app/config/docker.yaml
+          name: dashboard-homepage-docker
+          subPath: docker.yaml
+        - mountPath: /app/config/kubernetes.yaml
+          name: dashboard-homepage-kubernetes
+          subPath: kubernetes.yaml
+        - mountPath: /app/config/widgets.yaml
+          name: dashboard-homepage-widgets
+          subPath: widgets.yaml
+        - mountPath: /app/config/services.yaml
+          name: dashboard-homepage-services
+          subPath: services.yaml
+      restartPolicy: Always
+      volumes:
+      - configMap:
+          name: dashboard-homepage-services
+        name: dashboard-homepage-services
+      - configMap:
+          name: dashboard-homepage-bookmarks
+        name: dashboard-homepage-bookmarks
+      - configMap:
+          name: dashboard-homepage-docker
+        name: dashboard-homepage-docker
+      - configMap:
+          name: dashboard-homepage-kubernetes
+        name: dashboard-homepage-kubernetes
+      - configMap:
+          name: dashboard-homepage-widgets
+        name: dashboard-homepage-widgets
+      - configMap:
+          name: dashboard-homepage-settings
+        name: dashboard-homepage-settings
+status: {}
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  annotations:
+    cert-manager.io/cluster-issuer: letsencrypt-prod
+    traefik.ingress.kubernetes.io/router.entrypoints: websecure
+  name: dashboard
+  namespace: dashboard
+spec:
+  rules:
+  - host: dashboard.traunseenet.com
+    http:
+      paths:
+      - backend:
+          service:
+            name: dashboard-homepage
+            port:
+              name: http
+        path: /
+        pathType: Prefix
+  tls:
+  - hosts:
+    - dashboard.traunseenet.com
+    secretName: letsencrypt-prod
