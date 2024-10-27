@@ -2,7 +2,7 @@
 apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
-  name: open-webui-v3-longhorn
+  name: open-webui-llm-longhorn
   annotations:
     numberOfReplicas: '1'
 spec:
@@ -10,5 +10,5 @@ spec:
   storageClassName: longhorn-storage
   resources:
     requests:
-      storage: 20Gi
+      storage: 50Gi
 status: {}

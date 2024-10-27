@@ -37,7 +37,7 @@ ports:
       enabled: true
 tracing:
   otlp:
-    enabled: true
+    enabled: false
     http:
       enabled: true
       endpoint: http://opentelemetry-collector.observability.svc.cluster.local:4318/v1/traces
@@ -98,7 +98,7 @@ providers:
     enabled: true
     allowExternalNameServices: true
     publishedService:
-      enabled: false
+      enabled: true
 rbac:
   enabled: true
 service:

@@ -10,3 +10,4 @@ helmCharts:
     releaseName: paperless-ngx
     namespace: paperless
     valuesFile: values.yaml
+    includeCRDs: true

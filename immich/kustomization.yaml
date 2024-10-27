@@ -10,3 +10,4 @@ helmCharts:
     releaseName: immich
     namespace: immich
     valuesFile: values.yaml
+    version: 0.8.1

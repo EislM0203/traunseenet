@@ -1,4 +1,4 @@
-# Home Cluster
+# Home Cluster (deprecated, migrated to argocd)
 ## How to start it up
 
 If you had a clean RaspberryPi, run the following command to install k3s and make sure to alter the IP in the install config: 

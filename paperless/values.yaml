@@ -18,9 +18,9 @@ image:
 env:
   # -- Set the container timezone
   TZ: "Europe/Vienna"
-  PAPERLESS_OCR_PAGES: 1
-  PAPERLESS_TASK_WORKERS: 2
-  PAPERLESS_THREADS_PER_WORKER: 1
+  #PAPERLESS_OCR_PAGES: 1
+  #PAPERLESS_TASK_WORKERS: 2
+  #PAPERLESS_THREADS_PER_WORKER: 1
   PAPERLESS_OCR_SKIP_ARCHIVE_FILE: "with_text"
   PAPERLESS_WEBSERVER_WORKERS: 1
   PAPERLESS_OCR_LANGUAGES: "deu+eng"
@@ -60,30 +60,31 @@ persistence:
   # @default -- See [values.yaml](./values.yaml)
   data:
     enabled: true
-    storageClass: "longhorn-storage"
-    accessMode: ReadWriteOnce
-    size: 1Gi
+    existingClaim: "paperless-ngx-data"
+    #storageClass: "longhorn-storage"
+    #accessMode: ReadWriteOnce
+    #size: 1Gi
   # -- Configure media volume settings for the chart under this key.
   # @default -- See [values.yaml](./values.yaml)
   media:
     enabled: true
-    storageClass: "longhorn-storage"
-    accessMode: ReadWriteOnce
-    size: 8Gi
+    existingClaim: "paperless-ngx-media"
   # -- Configure export volume settings for the chart under this key.
   # @default -- See [values.yaml](./values.yaml)
   export:
     enabled: true
-    storageClass: "longhorn-storage"
-    accessMode: ReadWriteOnce
-    size: 1Gi
+    existingClaim: "paperless-ngx-export"
+    #storageClass: "longhorn-storage"
+    #accessMode: ReadWriteOnce
+    #size: 1Gi
   # -- Configure consume volume settings for the chart under this key.
   # @default -- See [values.yaml](./values.yaml)
   consume:
     enabled: true
-    storageClass: "longhorn-storage"
-    accessMode: ReadWriteOnce
-    size: 4Gi
+    existingClaim: "paperless-ngx-consume"
+    #storageClass: "longhorn-storage"
+    #accessMode: ReadWriteOnce
+    #size: 4Gi
 
 # -- Enable and configure postgresql database subchart under this key.
 #    If enabled, the app's db envs will be set for you.
@@ -97,8 +98,9 @@ postgresql:
   primary:
     persistence:
       enabled: true
-      storageClass: "longhorn-storage"
-      size: 8Gi
+      existingClaim: "data-paperless-ngx-postgresql-0"
+      #storageClass: "longhorn-storage"
+      #size: 8Gi
 
 # -- Enable and configure mariadb database subchart under this key.
 #    If enabled, the app's db envs will be set for you.
